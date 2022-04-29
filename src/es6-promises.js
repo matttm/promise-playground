@@ -1,51 +1,33 @@
+const axios = require("axios");
+
 // TypeScript added support for async/await with version 1.7 in 2015.[11]
 //
 // Javascript added support for async/await in 2017 as part of ECMAScript 2017 JavaScript edition.
-const axios = require("axios");
-var x = new Promise((res) => {
-    setTimeout(() => res(5), 1000)
-});
-
-x
-    .then(x => {
-        console.log(x);
-        return x;
-    })
-    .then(x => {
-        console.log(x);
-        return x + 1;
-    })
-    .then(x => x + 1)
-    .catch(x => {
-        console.log(x)
-    })
-    .then(console.log)
-
-var y = () => new Promise((res) => {
-    setTimeout(() => res(7), 1000)
-});
-
-y()
-    .then(x => {
-        console.log(x);
-        return x;
-    })
-    .then(x => {
-        throw x;
-    })
-    .catch(x => {
-        console.log(`Catching err: ${x}`);
+const asyncWrapper = async () => {
+    var x = new Promise((res) => {
+        setTimeout(() => res(5), 1000)
     });
 
-var z = () => new Promise((res) => {
-    axios.get('https://google.com').then((html, err) => {
-        if (err) throw err;
-        res(html);
-    });
-});
+    const x1 = await x;
+    console.log(x1);
+    const x2 = x1 + 1;
+    console.log(x2);
 
-z()
-    .then(x => x.data)
-    .then((html) => {
-        console.log(html);
+    var y = () => new Promise((res) => {
+        setTimeout(() => res(7), 1000)
     });
+
+    const y1 = await y();
+    console.log(y1);
+    Promise.reject(y1)
+        .catch(x => {
+            console.log(`Catching err: ${x}`);
+        });
+
+    var z = () => axios.get('https://api.weather.gov/gridpoints/TOP/31,80/forecast');
+    const res = await z();
+    const data = res.data;
+    console.log(data);
+};
+
+asyncWrapper().catch((err) => console.log(`Error executing async code`));

@@ -35,7 +35,8 @@ y()
     });
 
 var z = () => new Promise((res) => {
-    axios.get('https://google.com').then((html, err) => {
+    axios.get('https://api.weather.gov/gridpoints/TOP/31,80/forecast')
+        .then((html, err) => {
         if (err) throw err;
         res(html);
     });
