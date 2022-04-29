@@ -1,0 +1,19 @@
+{
+  "name": "promise-playground",
+  "version": "1.0.0",
+  "description": "Just messing around with promises",
+  "main": "promise.js",
+  "scripts": {
+    "start": "node src/es5-promises.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "javascript",
+    "promise"
+  ],
+  "author": "matttm",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
