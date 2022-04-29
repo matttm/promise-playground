@@ -4,7 +4,8 @@
   "description": "Just messing around with promises",
   "main": "promise.js",
   "scripts": {
-    "start": "node src/es5-promises.js",
+    "start:old": "node src/es5-promises.js",
+    "start:new": "node src/es6-promises.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
